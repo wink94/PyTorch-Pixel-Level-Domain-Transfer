@@ -27,10 +27,10 @@ def populateTrainList(dir):
 
 class domainTransferLoader(data.Dataset):
 
-	def __init__(self):
-		self.clothes, self.models = populateTrainList('/home/user/data/lookbook/data')
-		print(len(self.clothes))
-		print(len(self.models))
+	def __init__(self, dataPath):
+		self.clothes, self.models = populateTrainList(dataPath)
+		print("Unique Clothes:",len(self.clothes))
+		
 
 	def __getitem__(self, index):
 
