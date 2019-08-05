@@ -18,8 +18,8 @@ def train_val():
 	discriminatorD = model.DiscriminatorD().cuda() # Real-Fake Discriminator
 	discriminatorA = model.DiscriminatorA().cuda() # Domain Discriminator
 
-	dataFeeder = data.domainTransferLoader('/PyTorch-Pixel-Level-Domain-Transfer/')
-	train_loader = torch.utils.data.DataLoader(dataFeeder, batch_size=128, shuffle=True,
+	dataFeeder = data.domainTransferLoader('lookbook/data/')
+	train_loader = torch.utils.data.DataLoader(dataFeeder, batch_size=6, shuffle=True,
 											   num_workers=2, pin_memory=True)
 
 	criterion = nn.BCEWithLogitsLoss().cuda()
