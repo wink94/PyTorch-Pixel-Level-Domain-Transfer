@@ -19,7 +19,7 @@ def train_val():
 	discriminatorA = model.DiscriminatorA().cuda() # Domain Discriminator
 
 	dataFeeder = data.domainTransferLoader('lookbook/data/')
-	train_loader = torch.utils.data.DataLoader(dataFeeder, batch_size=6, shuffle=True,
+	train_loader = torch.utils.data.DataLoader(dataFeeder, batch_size=128, shuffle=True,
 											   num_workers=2, pin_memory=True)
 
 	criterion = nn.BCEWithLogitsLoss().cuda()
@@ -113,6 +113,8 @@ def train_val():
 				print("LossG:", lossG.item(), "LossD:", lossD.item(), "LossA:", lossA.item())
 			if((i+1) % 100) == 0:
 				torchvision.utils.save_image((fake+1)/2, 'samples/'+str(i+1)+'.jpg')
+
+		torch.save(optimizerG,epoch+'.pt')
 
 
 
