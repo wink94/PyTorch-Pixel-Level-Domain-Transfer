@@ -32,13 +32,12 @@ def train_val():
 	discriminatorD.train()
 	discriminatorA.train()
 	
-	for epoch in range(10):
+	for epoch in range(51):
 		for i, (image1, image2, image3) in enumerate(train_loader):
 
 			I1_var = image1.to(torch.float32).cuda() #Image of cloth being worn by model in image3
 			I2_var = image2.to(torch.float32).cuda() #Image of cloth unassociated with model in image3
 			I3_var = image3.to(torch.float32).cuda() #Image of Model
-			
 			real_label_var = torch.ones((I1_var.shape[0],1), requires_grad=False).cuda()
 			fake_label_var = torch.zeros((I1_var.shape[0],1), requires_grad=False).cuda()			
 
@@ -114,7 +113,8 @@ def train_val():
 			if((i+1) % 100) == 0:
 				torchvision.utils.save_image((fake+1)/2, 'samples/'+str(i+1)+'.jpg')
 
-		torch.save(optimizerG,epoch+'.pt')
+		# if (epoch%10) == 0:
+		torch.save(generator,str(epoch)+'gen.pt')
 
 
 
