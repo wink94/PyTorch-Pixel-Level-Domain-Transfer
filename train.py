@@ -113,7 +113,7 @@ def train_val():
 			if((i+1) % 100) == 0:
 				torchvision.utils.save_image((fake+1)/2, 'samples/'+str(i+1)+'.jpg')
 
-		if (epoch%10) == 0:
+		if (epoch%5) == 0:
 			torch.save(generator,str(epoch)+'gen.pt')
 
 
