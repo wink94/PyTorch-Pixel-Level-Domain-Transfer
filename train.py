@@ -32,7 +32,7 @@ def train_val():
 	discriminatorD.train()
 	discriminatorA.train()
 	
-	for epoch in range(51):
+	for epoch in range(101):
 		for i, (image1, image2, image3) in enumerate(train_loader):
 
 			I1_var = image1.to(torch.float32).cuda() #Image of cloth being worn by model in image3
@@ -113,8 +113,8 @@ def train_val():
 			if((i+1) % 100) == 0:
 				torchvision.utils.save_image((fake+1)/2, 'samples/'+str(i+1)+'.jpg')
 
-		# if (epoch%10) == 0:
-		torch.save(generator,str(epoch)+'gen.pt')
+		if (epoch%10) == 0:
+			torch.save(generator,str(epoch)+'gen.pt')
 
 
 

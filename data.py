@@ -39,6 +39,7 @@ class domainTransferLoader(data.Dataset):
 
 		idx2 = np.random.randint(0, len(self.clothes))
 		PID2 = self.clothes[idx2].split("/")[-1].split("_")[0].split("ID")[-1]
+		# print(PID2)
 
 		#print("This:",len(self.models[PID1]))
 		idx3 = np.random.randint(0, len(self.models[PID1]))
@@ -48,18 +49,21 @@ class domainTransferLoader(data.Dataset):
 			PID2 = self.clothes[idx2].split("/")[-1].split("_")[0].split("ID")[-1]
 
 		imgPath1 = self.clothes[idx1]
+		# print("imgPath1",imgPath1)
 		imgPath2 = self.clothes[idx2]
 		imgPath3 = self.models[PID1][idx3]
 
 		img1 = np.array(cv2.resize(cv2.imread(imgPath1),(64,64))[:,:,(2,1,0)],dtype=np.float32)
 		img2 = np.array(cv2.resize(cv2.imread(imgPath2),(64,64))[:,:,(2,1,0)],dtype=np.float32)
 		img3 = np.array(cv2.resize(cv2.imread(imgPath3),(64,64))[:,:,(2,1,0)],dtype=np.float32)
+		# print("img1",img1.shape)
+		# print("img1",img2.shape)
 
 		img1 = (img1/127.5) - 1
 		img2 = (img2/127.5) - 1
 		img3 = (img3/127.5) - 1
 
-		#print(np.min(img1))
+		# print(torch.from_numpy(img1.transpose((2,0,1))).shape)
 
 		return torch.from_numpy(img1.transpose((2,0,1))), torch.from_numpy(img2.transpose((2,0,1))), torch.from_numpy(img3.transpose((2,0,1)))
 
