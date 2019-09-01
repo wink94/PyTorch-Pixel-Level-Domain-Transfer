@@ -114,7 +114,8 @@ def train_val():
 				torchvision.utils.save_image((fake+1)/2, 'samples/'+str(i+1)+'.jpg')
 
 		if (epoch%5) == 0:
-			torch.save(generator.state_dict(),f'/content/drive/My Drive/Weight Files/str(epoch)+gen.pt')
+			fileID=str(epoch)
+			torch.save(generator.state_dict(),f'/content/drive/My Drive/Weight Files/{fileID}_gen.pt')
 
 
 
