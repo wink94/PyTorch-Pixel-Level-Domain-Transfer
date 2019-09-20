@@ -115,7 +115,7 @@ def train_val():
 
 		if (epoch%5) == 0:
 			fileID=str(epoch)
-			torch.save(generator.state_dict(),f'/content/drive/My Drive/Weight Files/{fileID}_gen.pt')
+			torch.save(generator,f'/content/drive/My Drive/Weight Files/{fileID}_gen.pt')
 
 
 
